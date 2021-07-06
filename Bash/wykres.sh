@@ -7,9 +7,9 @@ while [ 1 ];
 	dana2=$(awk '$1=="wlp4s0:" {print $10}' /proc/net/dev)
 	dana=$(($dana2-$dana1))
 	format=B
-	echo $dana
+	#echo $dana
 	licznik=$(($dana/1000))
-	echo $licznik
+	#echo $licznik
 	if [ $dana -gt 1000000 ];
 		then dana=$(($dana/1000000))
 		format=MB
@@ -19,7 +19,8 @@ while [ 1 ];
 	fi
 	out="";
 	while [ $licznik -gt 0 ];
-		do ((licznik--))
+		do
+		licznik=$(($licznik-1))
 		out="${out}#";
 	done
 	tput setaf 1
