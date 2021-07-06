@@ -3,9 +3,9 @@
 #include <pthread.h>
 #include <assert.h>
 
-int m1[10000][00100];
-int m2[10000][10000];
-int score[10000][10000];
+int** m1;
+int** m2;
+int** score;
 int s,col=0;
 pthread_mutex_t lock;
 
@@ -33,6 +33,14 @@ int main(){
 	scanf("%d %d",&s,&w);
 	assert(w>0);
 	pthread_t tids[w];
+	m1=malloc(s*sizeof(int*));
+	m2=malloc(s*sizeof(int*));
+	score=malloc(s*sizeof(int*));
+	for(int i=0;i<s;i++){
+		m1[i]=malloc(s*sizeof(int));
+		m2[i]=malloc(s*sizeof(int));
+		score[i]=malloc(s*sizeof(int));
+	}
 	srand(time(NULL));
 	for(int i=0;i<s;i++){
 		for(int j=0;j<s;j++){
